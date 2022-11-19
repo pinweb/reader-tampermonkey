@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TJAD 阅读器
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.1.1
 // @description  Just a Reader for TJAD via Chrome
 // @author       atan
 // @match        http://*.tjad.cn/*
