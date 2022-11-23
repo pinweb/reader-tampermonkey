@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TJAD 阅读器
 // @namespace    http://tampermonkey.net/
-// @version      0.1.4
+// @version      0.1.5
 // @description  Just a Reader for TJAD via Chrome
 // @author       atan
 // @match        http://*.tjad.cn/*
@@ -35,10 +35,9 @@
         for (var i = 0; i < as.length; i++) {
             let newUrl = "#";
 
-            let docNode = parseLink(as[i].href);
-            docNode.doc +='?v=2';
-
             if (as[i].href.startsWith("http://read.tjad.cn/")) {
+                let docNode = parseLink(as[i].href);
+                docNode.doc +='?v=2';
                 newUrl = genNewUrl(docNode);
                 as[i].parentElement.insertAdjacentHTML(
                     "beforeend",
@@ -61,7 +60,7 @@
                             '" target="_blank" class="ml-4 text-red-600">测试新版阅读</a>'
                     );
                 }
-                //
+
             }
         }
     }
