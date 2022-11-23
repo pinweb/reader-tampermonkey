@@ -36,7 +36,7 @@
             let newUrl = "#";
 
             if (as[i].href.startsWith("http://read.tjad.cn/")) {
-                newUrl = genNewUrl(parseLink(as[i].href));
+                newUrl = genNewUrl(parseLink(as[i].href)) + '?v=2';
                 as[i].parentElement.insertAdjacentHTML(
                     "beforeend",
                     '<a href="' +
@@ -47,7 +47,7 @@
                 let size = as[i].dataset.size;
                 if (size < 20000000) {
                     let payload = {
-                        doc: as[i].href.split("?")[0] + "?doc-convert/preview",
+                        doc: as[i].href.split("?")[0] + "?doc-convert/preview&v=2",
                         u: "vadmin",
                     };
                     newUrl = genNewUrl(payload);
