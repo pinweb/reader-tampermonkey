@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TJAD 阅读器
 // @namespace    http://tampermonkey.net/
-// @version      0.1.2
+// @version      0.1.3
 // @description  Just a Reader for TJAD via Chrome
 // @author       atan
 // @match        http://*.tjad.cn/*
@@ -36,7 +36,7 @@
             let newUrl = "#";
 
             if (as[i].href.startsWith("http://read.tjad.cn/")) {
-                newUrl = genNewUrl(parseLink(as[i].href)) + '?v=2';
+                newUrl = genNewUrl(parseLink(as[i].href)+'?v=2');
                 as[i].parentElement.insertAdjacentHTML(
                     "beforeend",
                     '<a href="' +
