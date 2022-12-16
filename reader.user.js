@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TJAD 阅读器
 // @namespace    http://tampermonkey.net/
-// @version      0.1.5
+// @version      0.2.0
 // @description  Just a Reader for TJAD via Chrome
 // @author       atan
 // @match        http://*.tjad.cn/*
@@ -13,14 +13,13 @@
 (function () {
     "use strict";
 
-    function safeUrl(str) {
-        return str.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-    }
+    let safeUrl = s => s.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
 
     function genNewUrl(oldUrl) {
         let key = CryptoJS.enc.Utf8.parse("itMkwgYdmMU3afKU");
         return (
-            "http://pdf.pinweb.io/n/" +
+            "https://pdf.pinweb.io/n/" +
             safeUrl(
                 CryptoJS.AES.encrypt(JSON.stringify(oldUrl), key, {
                     mode: CryptoJS.mode.ECB,
@@ -65,11 +64,8 @@
         }
     }
 
-    function parseLink(link) {
-        return PHPUnserialize.unserialize(
-            atob(link.replace("http://read.tjad.cn/t/", ""))
-        );
-    }
+    let parseLink = link => PHPUnserialize.unserialize(atob(link.replace("http://read.tjad.cn/t/", "")));
+    
 
     document.addEventListener("inertia:success", (event) => {
         addReaderLink();
